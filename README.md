@@ -19,16 +19,23 @@
 ---
 
 ## 動作イメージ
+
+### VCチャンネルに入る
 ![スクリーンショット 2024-12-20 172449](https://github.com/user-attachments/assets/b8873c6a-c0b0-4f30-9ad7-cc909afa35a7)
 
+### タイマー開始メッセージがDMで届く
 ![スクリーンショット 2024-12-20 172521](https://github.com/user-attachments/assets/adaedb07-3fae-4cf7-bf32-df1d5e545df4)
 
+### 休憩と開始時間をDMで知らせてくれる。（集中時間と休憩時間はsettings.pyで変更可能）
 <img width="839" alt="image" src="https://github.com/user-attachments/assets/cb660798-ad52-4d02-8dec-c5ba844456e9" />
 
+### トータル利用時間
 ![スクリーンショット 2024-12-20 215126](https://github.com/user-attachments/assets/c88cf3f6-72c4-4e0f-bcbb-32f0cb535793)
 
+### 現在の入室者
 ![スクリーンショット 2024-12-20 215202](https://github.com/user-attachments/assets/cf64a15f-48b6-4385-8a3d-534dc2342d55)
 
+### 入室ログ
 ![スクリーンショット 2024-12-20 215240](https://github.com/user-attachments/assets/1c677319-cc30-440d-9d28-887c159309cc)
 
 
