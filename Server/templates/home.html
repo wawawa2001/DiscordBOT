@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ハンバーガーメニュー</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: #333;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 5rem;
+                flex-direction: column;
+                background-color: #333;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <ul class="nav-menu">
+        <li><a href="/home">HOME</a></li>
+        <li><a href="/Pomodoro_total_time">TOTAL</a></li>
+        <li><a href="/Pomodoro_history">HISTORY</a></li>
+        <li><a href="/Pomodoro_process">PROCESS</a></li>
+    </ul>
+</nav>
+
+<script>
+    document.querySelector('.hamburger').addEventListener('click', function() {
+        this.classList.toggle('active');
+        document.querySelector('.nav-menu').classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>
