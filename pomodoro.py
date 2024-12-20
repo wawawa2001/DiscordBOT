@@ -12,7 +12,6 @@ username = USERNAME
 password = PASSWORD
 dbname = DBNAME
 
-
 def create_connection(hostname, username, password, dbname):
     connection = None
     try:
@@ -35,7 +34,7 @@ def execute_param_query(query, params):
         cursor.execute(query, params)
         connection.commit()
     except Error as e:
-        print("Execute Error :(")
+        print(f"Execute Error :( {e}")
     finally:
         cursor.close()
 
@@ -52,7 +51,7 @@ def execute_read_query(query, params=None):
         result = cursor.fetchall()
         return result
     except Error as e:
-        print("Execute Error :(")
+        print(f"Execute Read Error :( {e}")
     finally:
         cursor.close()
 
@@ -65,7 +64,7 @@ async def pomodoro_sys():
     print("Check Database>>>")
     now = datetime.now()
 
-    th_time = now - timedelta(minutes=25)
+    th_time = now - timedelta(minutes=FOCUS_TIME)
 
     query = """
         SELECT * FROM Pomodoro WHERE start_at < %s;
@@ -77,22 +76,21 @@ async def pomodoro_sys():
 
     if result != []:
         for user in result:
-            userid = user[1]
+            userid = user[0]
 
             if user[-1] == 1:
                 target = await client.fetch_user(userid)
 
                 try:
-                    await target.send("25分が経過しました。休憩に入りましょう！")
-                except Error:
-                    pass
+                    await target.send(f"{FOCUS_TIME}分が経過しました。休憩に入りましょう！")
+                except Exception as e:
+                    print(f"Error sending message to user {userid}: {e}")
             
-                print("25")
                 query = """
                     UPDATE Pomodoro SET start_at = %s, status=%s WHERE username = %s
                 """
 
-                params = (user[-2]+timedelta(minutes=5), 0, userid)
+                params = (user[-2]+timedelta(minutes=BREAK_TIME), 0, userid)
 
                 execute_param_query(query, params)
 
@@ -100,17 +98,16 @@ async def pomodoro_sys():
                     INSERT INTO Pomodoro_history(username, minutes) values (%s, %s)
                 """
                 username = str(await client.fetch_user(int(userid)))
-                params = (username, 25)
+                params = (username, FOCUS_TIME)
                 execute_param_query(query, params)
             else:
                 target = await client.fetch_user(userid)
 
                 try:
-                    await target.send("5分が経過しました。作業に戻りましょう！")
+                    await target.send(f"{BREAK_TIME}分が経過しました。作業に戻りましょう！")
                 except Error:
                     pass
 
-                print("5")
                 now = datetime.now()
                 query = """
                     UPDATE Pomodoro SET start_at = %s, status=%s WHERE username = %s
@@ -144,7 +141,7 @@ async def on_voice_state_update(member, before, after):
         target = await client.fetch_user(member.id)
 
         try:
-            await target.send("ポモドーロタイマーを開始しました。25分間集中しましょう！")
+            await target.send(f"ポモドーロタイマーを開始しました。{FOCUS_TIME}分間集中しましょう！")
         except Error:
             pass    
 
@@ -168,10 +165,10 @@ async def on_voice_state_update(member, before, after):
 
         else:
             query = """
-                INSERT INTO Pomodoro(username) values (%s)
+                INSERT INTO Pomodoro(username, start_at, status) values (%s, %s, %s)
             """
 
-            params = (member.id, )
+            params = (member.id, datetime.now(), 1, )
 
             execute_param_query(query, params)
             print("Not Exist User, Insert to DB...!")
