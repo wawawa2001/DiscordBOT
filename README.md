@@ -1,5 +1,4 @@
-# Pomodoro Tracker Application
-
+# PomodoroBOT
 このプロジェクトは、Flaskを使用したWebアプリケーションとDiscord Botを組み合わせたポモドーロタイマーシステムです。以下に、アプリケーションの概要、設定方法、および使用手順を説明します。
 
 ---
@@ -18,6 +17,12 @@
 - チャネル退出時に作業時間を記録。
 
 ---
+
+## 動作イメージ
+
+![スクリーンショット 2024-12-20 172521](https://github.com/user-attachments/assets/adaedb07-3fae-4cf7-bf32-df1d5e545df4)
+
+![スクリーンショット 2024-12-20 172449](https://github.com/user-attachments/assets/b8873c6a-c0b0-4f30-9ad7-cc909afa35a7)
 
 ## 必要な環境
 
