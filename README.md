@@ -56,6 +56,7 @@
 ### テーブル1: `Pomodoro`
 | カラム名      | データ型       | 説明                       |
 |---------------|----------------|----------------------------|
+| id            | int            | NOT NULL, AUTO_INCREMENT   |
 | username      | VARCHAR(255)   | DiscordのユーザーID       |
 | start_at      | DATETIME       | タイマーの開始時刻        |
 | status        | TINYINT        | 状態 (1: 作業中, 0: 休憩中) |
@@ -63,6 +64,7 @@
 ### テーブル2: `Pomodoro_history`
 | カラム名      | データ型       | 説明                       |
 |---------------|----------------|----------------------------|
+| id            | int            | NOT NULL, AUTO_INCREMENT   |
 | username      | VARCHAR(255)   | DiscordのユーザーID       |
 | minutes       | INT            | 作業時間 (分)             |
 
