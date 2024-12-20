@@ -90,11 +90,11 @@
 4. アプリケーションを起動:
    - Flaskサーバー:
      ```bash
-     python app.py
+     python pomodoro.py
      ```
    - Discord Bot:
      ```bash
-     python bot.py
+     python3 server.py
      ```
 
 ---
