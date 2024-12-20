@@ -1,1 +1,10 @@
-
+HOSTNAME = "localhost" # IP等
+USERNAME = "" # DBのユーザネーム
+PASSWORD = "" # DBのパスワード
+DBNAME = "" # DB名
+TOKEN = "" # DiscordBOT TOKEN
+LLM_HOST = "127.0.0.1" # Ollama API IP
+LLM_PORT = 11434 # Ollama API PORT
+LLM_MODEL = "gemma:2b" # Ollama LLM Model NAME
+CHATBOT_CH_ID = # DiscordのチャンネルID（チャットボット用チャンネル）
+POMODORO_CH_ID =  # ポモドーロ監視するVCチャンネルのID
