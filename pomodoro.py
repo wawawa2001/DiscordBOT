@@ -82,7 +82,7 @@ async def pomodoro_sys():
                 target = await client.fetch_user(userid)
 
                 try:
-                    await target.send(f"{FOCUS_TIME}蛻�′邨碁℃縺励∪縺励◆縲ゆｼ第�縺ｫ蜈･繧翫∪縺励ｇ縺�ｼ�")
+                    await target.send(f"{FOCUS_TIME}分が経過しました。休憩に入りましょう！")
                 except Exception as e:
                     print(f"Error sending message to user {userid}: {e}")
             
@@ -104,7 +104,7 @@ async def pomodoro_sys():
                 target = await client.fetch_user(userid)
 
                 try:
-                    await target.send(f"{BREAK_TIME}蛻�′邨碁℃縺励∪縺励◆縲ゆｽ懈･ｭ縺ｫ謌ｻ繧翫∪縺励ｇ縺�ｼ�")
+                    await target.send(f"{BREAK_TIME}分が経過しました。作業に戻りましょう！")
                 except Error:
                     pass
 
@@ -121,7 +121,7 @@ async def pomodoro_sys():
 async def on_ready():
     print()
     print("---------------------------")
-    print('繝ｭ繧ｰ繧､繝ｳ縺励∪縺励◆')
+    print('ログインしました。')
     print("---------------------------")
 
     while True:
@@ -130,18 +130,18 @@ async def on_ready():
 
 @client.event
 async def on_voice_state_update(member, before, after):
-    # 繝溘Η繝ｼ繝医ｄ繧ｫ繝｡繝ｩ縺ｮ迥ｶ諷九′螟峨ｏ縺｣縺溘□縺代↑繧臥┌隕�
+    # ミュートやカメラの状態が変わっただけなら無視
     if before.channel == after.channel:
         return
 
-    # 繝ｦ繝ｼ繧ｶ繝ｼ縺檎音螳壹�繝懊う繧ｹ繝√Ε繝阪Ν縺ｫ蜿ょ刈縺励◆縺ｨ縺阪�蜃ｦ逅�
+    # ユーザが特定のボイスチャンネルに参加した時の処理
     if after.channel is not None and after.channel.id == POMODORO_CH_ID:
         print("Join on VC!")
 
         target = await client.fetch_user(member.id)
 
         try:
-            await target.send(f"繝昴Δ繝峨�繝ｭ繧ｿ繧､繝槭�繧帝幕蟋九＠縺ｾ縺励◆縲�{FOCUS_TIME}蛻�俣髮�ｸｭ縺励∪縺励ｇ縺�ｼ�")
+            await target.send(f"ポモドーロタイマーを開始しました。{FOCUS_TIME}分間集中しましょう！")
         except Error:
             pass    
 
@@ -174,7 +174,7 @@ async def on_voice_state_update(member, before, after):
             print("Not Exist User, Insert to DB...!")
 
 
-    # 繝ｦ繝ｼ繧ｶ繝ｼ縺檎音螳壹�繝懊う繧ｹ繝√Ε繝阪Ν縺九ｉ騾蜃ｺ縺励◆縺ｨ縺阪�蜃ｦ逅�
+    # ユーザが特定のチャンネルから退出した時の処理
     if before.channel is not None and before.channel.id == POMODORO_CH_ID:
 
         query = """
