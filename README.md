@@ -65,7 +65,7 @@
 
 1. 必要なライブラリをインストール:
    ```bash
-   pip install flask discord.py mysql-connector-python
+   pip install -r requirements.txt
    ```
 
 2. データベースをセットアップ:
@@ -121,7 +121,4 @@
 - データベース接続に問題がある場合は、エラーがコンソールに出力されます。
 
 ---
-
-## 貢献
-バグ報告や機能改善案があれば、Issueを作成してください。Pull Requestも歓迎します。
 
