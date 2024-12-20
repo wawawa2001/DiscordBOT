@@ -40,7 +40,6 @@ DROP TABLE IF EXISTS `Pomodoro_history`;
 CREATE TABLE `Pomodoro_history` (
   `username` varchar(255) NOT NULL,
   `minutes` int NOT NULL,
-  PRIMARY KEY (`username`,`minutes`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
